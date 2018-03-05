@@ -325,6 +325,11 @@ extension MatomoTracker {
         track(eventWithCategory: category, action: action, name: name, value: value, url: url)
     }
     
+    @objc public func track(goal index: Int) {
+        let event = Event(tracker: self, action: [], url: nil, referer: nil, eventCategory: nil, eventAction: nil, eventName: nil, eventValue: nil, customTrackingParameters: ["idgoal": "\(index)"], dimensions: [], variables: [])
+        queue(event: event)
+    }
+    
     @available(*, deprecated, message: "use trackEventWithCategory:action:name:number:url instead")
     @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil) {
         track(eventWithCategory: category, action: action, name: name, number: number, url: nil)
